@@ -13,4 +13,9 @@ public class Documental : Contenido
     {
         this.Tematica = _tematica;
     }
+
+    public override void ObtenerDescripcion()
+    {
+        Console.WriteLine($"Documental {Titulo} - Duración ${DuracionMinutos} - Temática {Tematica}");
+    }
 }
