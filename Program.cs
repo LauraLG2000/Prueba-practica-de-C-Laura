@@ -70,3 +70,29 @@ void FiltradoPorDuracion(List<Contenido> listaContenido, int duracionMaxima)
         }
     }
 }
+
+FiltradoPorPelicula(Streaming);
+
+void FiltradoPorPelicula(List<Contenido> listaContenido)
+{
+    List<Contenido> contenidoFiltrado = new List<Contenido>();
+    foreach(var contenido in listaContenido)
+    {
+        if(contenido is Pelicula)
+        {
+            contenidoFiltrado.Add(contenido);
+        }
+    }
+
+    if(contenidoFiltrado.Count() == 0)
+    {
+        Console.WriteLine($"No hay peliculas registradas en la lista.");
+    }
+    else
+    {
+        foreach(var contenido in contenidoFiltrado)
+        {
+            contenido.ObtenerDescripcion();
+        }
+    }
+}
