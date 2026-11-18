@@ -14,3 +14,28 @@ foreach (var contenido in Streaming)
 {
     contenido.ObtenerDescripcion();
 }
+
+Console.WriteLine("Introduce el nombre del titulo del contenido a buscar: ");
+string tituloContenidoBusqueda = Console.ReadLine().ToLower().Trim();
+BuscarContenido(Streaming, tituloContenidoBusqueda);
+
+void BuscarContenido(List<Contenido> listaContenido, string titulo)
+{
+
+    bool encontrado = false;
+
+    foreach (var contenido in listaContenido)
+    {
+        if (contenido.Titulo.ToLower().Equals(tituloContenidoBusqueda))
+        {
+            Console.WriteLine("Contenido encontrado");
+            contenido.ObtenerDescripcion();
+            encontrado = true;
+        }
+    }
+
+    if (!encontrado)
+    {
+        Console.WriteLine($"No se ha encontrado el contenido con el título {tituloContenidoBusqueda}");
+    }
+}
