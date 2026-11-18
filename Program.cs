@@ -96,8 +96,9 @@ void FiltradoPorPelicula(List<Contenido> listaContenido)
     }
     else
     {
+        Console.WriteLine("=== LISTADO DE PELÍCULAS ===");
         foreach(var contenido in contenidoFiltrado)
-        {
+        {   
             contenido.ObtenerDescripcion();
         }
     }

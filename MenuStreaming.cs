@@ -55,6 +55,7 @@ public class MenuStreaming
                     break;
 
                 case 4:
+                    MostrarPeliculas();
                     break;
 
                 case UltimaOpcionValida:
@@ -126,6 +127,31 @@ public class MenuStreaming
                 {
                     contenido.ObtenerDescripcion();
                 }
+            }
+        }
+    }
+
+    public void MostrarPeliculas()
+    {
+        List<Contenido> contenidoFiltrado = new List<Contenido>();
+        foreach (var contenido in streaming)
+        {
+            if (contenido is Pelicula)
+            {
+                contenidoFiltrado.Add(contenido);
+            }
+        }
+
+        if (contenidoFiltrado.Count() == 0)
+        {
+            Console.WriteLine($"No hay peliculas registradas en la lista.");
+        }
+        else
+        {
+            Console.WriteLine("=== LISTADO DE PELÍCULAS ===");
+            foreach (var contenido in contenidoFiltrado)
+            {
+                contenido.ObtenerDescripcion();
             }
         }
     }
