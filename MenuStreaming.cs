@@ -59,6 +59,7 @@ public class MenuStreaming
                     break;
 
                 case UltimaOpcionValida:
+                    EstadisticaContenidos();
                     break;
 
                 case OpcionSalir:
@@ -154,5 +155,28 @@ public class MenuStreaming
                 contenido.ObtenerDescripcion();
             }
         }
+    }
+
+    public void EstadisticaContenidos()
+    {
+        int totalContenidos = streaming.Count();
+        int totalPeliculas = 0;
+        int totalSeries = 0;
+        int totalDocumentales = 0;
+
+        foreach (var contenido in streaming)
+        {
+            if (contenido is Pelicula) totalPeliculas++;
+
+            if (contenido is Serie) totalSeries++;
+
+            if (contenido is Documental) totalDocumentales++;
+        }
+
+        Console.WriteLine("=== ESTADISTICAS ===");
+        Console.WriteLine($"Total contenidos: {totalContenidos}");
+        Console.WriteLine($"Películas: {totalPeliculas}");
+        Console.WriteLine($"Series: {totalSeries}");
+        Console.WriteLine($"Documentales: {totalDocumentales}");
     }
 }
