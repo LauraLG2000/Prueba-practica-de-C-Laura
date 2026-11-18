@@ -15,4 +15,6 @@ public abstract class Contenido
         this.Titulo = _titulo;
         this.DuracionMinutos = _duracionMinutos;
     }
+
+    public abstract void ObtenerDescripcion();
 }

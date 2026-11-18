@@ -13,4 +13,9 @@ public class Pelicula : Contenido
     {
         this.Director = _director;
     }
+
+    public override void ObtenerDescripcion()
+    {
+        Console.WriteLine($"Pelicula {Titulo} - Duración ${DuracionMinutos} - Director {Director}");
+    }
 }
