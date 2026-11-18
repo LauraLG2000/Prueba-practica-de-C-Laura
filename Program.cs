@@ -96,3 +96,28 @@ void FiltradoPorPelicula(List<Contenido> listaContenido)
         }
     }
 }
+
+EstadisticaContenidos(Streaming);
+
+void EstadisticaContenidos(List<Contenido> listaContenido)
+{
+    int totalContenidos = listaContenido.Count();
+    int totalPeliculas = 0;
+    int totalSeries = 0;
+    int totalDocumentales = 0;
+    
+    foreach(var contenido in listaContenido)
+    {
+        if(contenido is Pelicula) totalPeliculas++;
+
+        if(contenido is Serie) totalSeries++;
+
+        if(contenido is Documental) totalDocumentales++;
+    }
+
+    Console.WriteLine("=== ESTADISTICAS ===");
+    Console.WriteLine($"Total contenidos: {totalContenidos}");
+    Console.WriteLine($"Películas: {totalPeliculas}");
+    Console.WriteLine($"Series: {totalSeries}");
+    Console.WriteLine($"Documentales: {totalDocumentales}");
+}
