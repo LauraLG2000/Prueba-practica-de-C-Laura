@@ -6,7 +6,7 @@ public class MenuStreaming
 {
     public const int OpcionSalir = 0;
     public const int UltimaOpcionValida = 5;
-     List<Contenido> Streaming;
+    List<Contenido> Streaming;
 
     public MenuStreaming()
     {
@@ -47,6 +47,7 @@ public class MenuStreaming
                     break;
 
                 case 2:
+                    BuscarContenido();
                     break;
 
                 case 3:
@@ -57,7 +58,7 @@ public class MenuStreaming
 
                 case UltimaOpcionValida:
                     break;
-                
+
                 case OpcionSalir:
                     Console.WriteLine("Menú cerrado");
                     break;
@@ -74,5 +75,27 @@ public class MenuStreaming
             contenido.ObtenerDescripcion();
         }
         Console.WriteLine();
+    }
+
+    public void BuscarContenido()
+    {
+        Console.WriteLine("Introduce el título a buscar: ");
+        string tituloBusqueda = Console.ReadLine().ToLower().Trim();
+        bool encontrado = false;
+
+        foreach (var contenido in Streaming)
+        {
+            if (contenido.Titulo.ToLower().Equals(tituloBusqueda))
+            {
+                Console.WriteLine("Contenido encontrado");
+                contenido.ObtenerDescripcion();
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado)
+        {
+            Console.WriteLine($"No se ha encontrado el contenido con el título {tituloBusqueda}");
+        }
     }
 }
