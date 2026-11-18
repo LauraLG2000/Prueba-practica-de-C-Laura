@@ -104,10 +104,20 @@ public class MenuStreaming
 
     public void FiltradoPorDuracion()
     {
-        Console.WriteLine("Introduce la duracion máxima del contenido: ");
-        int duracionMaximaBusqueda;
-        if (int.TryParse(Console.ReadLine(), out duracionMaximaBusqueda))
+        try
         {
+            Console.WriteLine("Introduce la duracion máxima del contenido: ");
+            int duracionMaximaBusqueda;
+            if (!int.TryParse(Console.ReadLine(), out duracionMaximaBusqueda))
+            {
+                throw new InvalidCastException("Error: Introduce un número entero.");
+            }
+
+            if (duracionMaximaBusqueda < 0)
+            {
+                throw new ArgumentOutOfRangeException("Error: No se pueden introducir duraciones negativas.");
+            }
+
             List<Contenido> contenidoFiltrado = new List<Contenido>();
             foreach (var contenido in streaming)
             {
@@ -129,6 +139,14 @@ public class MenuStreaming
                     contenido.ObtenerDescripcion();
                 }
             }
+        }
+        catch (ArgumentOutOfRangeException aoore)
+        {
+            Console.WriteLine(aoore.ToString());
+        }
+        catch (InvalidCastException ice)
+        {
+            Console.WriteLine(ice.ToString());
         }
     }
 
