@@ -16,6 +16,6 @@ public class Documental : Contenido
 
     public override void ObtenerDescripcion()
     {
-        Console.WriteLine($"Documental {Titulo} - Duración ${DuracionMinutos} - Temática {Tematica}");
+        Console.WriteLine($"Documental {Titulo} - Duración {DuracionMinutos} minutos - Temática {Tematica}");
     }
 }

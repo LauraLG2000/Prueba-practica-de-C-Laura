@@ -16,6 +16,6 @@ public class Pelicula : Contenido
 
     public override void ObtenerDescripcion()
     {
-        Console.WriteLine($"Pelicula {Titulo} - Duración ${DuracionMinutos} - Director {Director}");
+        Console.WriteLine($"Pelicula {Titulo} - Duración {DuracionMinutos} minutos - Director {Director}");
     }
 }

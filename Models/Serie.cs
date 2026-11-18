@@ -16,6 +16,6 @@ public class Serie : Contenido
 
     public override void ObtenerDescripcion()
     {
-        Console.WriteLine($"Serie {Titulo} - Duración ${DuracionMinutos} - Número de Temporadas {NumeroTemporadas}");
+        Console.WriteLine($"Serie {Titulo} - Duración {DuracionMinutos} minutos - Número de Temporadas {NumeroTemporadas}");
     }
 }
