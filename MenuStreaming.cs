@@ -6,7 +6,7 @@ public class MenuStreaming
 {
     public const int OpcionSalir = 0;
     public const int UltimaOpcionValida = 5;
-    List<Contenido> Streaming;
+    List<Contenido> streaming;
 
     public MenuStreaming()
     {
@@ -18,7 +18,7 @@ public class MenuStreaming
 
         Documental documental = new Documental("La vida de los animales", 60, "Científico");
 
-        Streaming = [pelicula1, pelicula2, serie1, serie2, documental];
+        streaming = [pelicula1, pelicula2, serie1, serie2, documental];
     }
     public void MostrarMenu()
     {
@@ -26,7 +26,7 @@ public class MenuStreaming
 
         do
         {
-            Console.WriteLine("=== STREAMING ===");
+            Console.WriteLine("\r\n=== STREAMING ===");
             Console.WriteLine("1. Ver todas los contenidos");
             Console.WriteLine("2. Buscar contenido");
             Console.WriteLine("3. Filtrar por duración");
@@ -51,6 +51,7 @@ public class MenuStreaming
                     break;
 
                 case 3:
+                    FiltradoPorDuracion();
                     break;
 
                 case 4:
@@ -70,7 +71,7 @@ public class MenuStreaming
     public void ListarContenido()
     {
         Console.WriteLine("=== LISTADO STREAMING ===");
-        foreach (var contenido in Streaming)
+        foreach (var contenido in streaming)
         {
             contenido.ObtenerDescripcion();
         }
@@ -83,7 +84,7 @@ public class MenuStreaming
         string tituloBusqueda = Console.ReadLine().ToLower().Trim();
         bool encontrado = false;
 
-        foreach (var contenido in Streaming)
+        foreach (var contenido in streaming)
         {
             if (contenido.Titulo.ToLower().Equals(tituloBusqueda))
             {
@@ -96,6 +97,36 @@ public class MenuStreaming
         if (!encontrado)
         {
             Console.WriteLine($"No se ha encontrado el contenido con el título {tituloBusqueda}");
+        }
+    }
+
+    public void FiltradoPorDuracion()
+    {
+        Console.WriteLine("Introduce la duracion máxima del contenido: ");
+        int duracionMaximaBusqueda;
+        if (int.TryParse(Console.ReadLine(), out duracionMaximaBusqueda))
+        {
+            List<Contenido> contenidoFiltrado = new List<Contenido>();
+            foreach (var contenido in streaming)
+            {
+                if (contenido.DuracionMinutos <= duracionMaximaBusqueda)
+                {
+                    contenidoFiltrado.Add(contenido);
+                }
+            }
+
+            if (contenidoFiltrado.Count() == 0)
+            {
+                Console.WriteLine($"No hay contenido cuya duración sea menor o igual a {duracionMaximaBusqueda}");
+            }
+            else
+            {
+                Console.WriteLine($"Contenido filtrado por {duracionMaximaBusqueda} minutos");
+                foreach (var contenido in contenidoFiltrado)
+                {
+                    contenido.ObtenerDescripcion();
+                }
+            }
         }
     }
 }
