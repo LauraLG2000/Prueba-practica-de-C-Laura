@@ -1,4 +1,8 @@
 ﻿using Models;
+using Streaming;
+
+MenuStreaming menuStreaming = new MenuStreaming();
+menuStreaming.MostrarMenu();
 
 Pelicula pelicula1 = new Pelicula("Mi Vecino Toro", 120, "Toriyama");
 Pelicula pelicula2 = new Pelicula("One Piece Film Red", 150, "Eichiro Oda");
@@ -10,10 +14,12 @@ Documental documental = new Documental("La vida de los animales", 60, "Científi
 
 List<Contenido> Streaming = [pelicula1, pelicula2, serie1, serie2, documental];
 
+Console.WriteLine("=== LISTADO STREAMING DESDE PROGRAM ===");
 foreach (var contenido in Streaming)
 {
     contenido.ObtenerDescripcion();
 }
+Console.WriteLine();
 
 Console.WriteLine("Introduce el nombre del titulo del contenido a buscar: ");
 string tituloContenidoBusqueda = Console.ReadLine().ToLower().Trim();
