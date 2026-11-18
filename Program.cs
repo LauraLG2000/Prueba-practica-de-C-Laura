@@ -48,29 +48,48 @@ void BuscarContenido(List<Contenido> listaContenido, string titulo)
 
 Console.WriteLine("Introduce la duracion máxima del contenido: ");
 int duracionMaximaBusqueda;
-if(int.TryParse(Console.ReadLine(), out duracionMaximaBusqueda))
+try
 {
+    if (!int.TryParse(Console.ReadLine(), out duracionMaximaBusqueda))
+    {
+        throw new InvalidCastException("Error: Introduce un número entero.");
+    }
+
+    if (duracionMaximaBusqueda < 0)
+    {
+        throw new ArgumentOutOfRangeException("Error: No se pueden introducir duraciones negativas.");
+    }
+
     FiltradoPorDuracion(Streaming, duracionMaximaBusqueda);
 }
+catch (ArgumentOutOfRangeException aoore)
+{
+    Console.WriteLine(aoore.ToString());
+}
+catch (InvalidCastException ice)
+{
+    Console.WriteLine(ice.ToString());
+}
+
 
 void FiltradoPorDuracion(List<Contenido> listaContenido, int duracionMaxima)
 {
     List<Contenido> contenidoFiltrado = new List<Contenido>();
-    foreach(var contenido in listaContenido)
+    foreach (var contenido in listaContenido)
     {
-        if(contenido.DuracionMinutos <= duracionMaxima)
+        if (contenido.DuracionMinutos <= duracionMaxima)
         {
             contenidoFiltrado.Add(contenido);
         }
     }
 
-    if(contenidoFiltrado.Count() == 0)
+    if (contenidoFiltrado.Count() == 0)
     {
         Console.WriteLine($"No hay contenido cuya duración sea menor o igual a {duracionMaxima}");
     }
     else
     {
-        foreach(var contenido in contenidoFiltrado)
+        foreach (var contenido in contenidoFiltrado)
         {
             contenido.ObtenerDescripcion();
         }
@@ -82,23 +101,23 @@ FiltradoPorPelicula(Streaming);
 void FiltradoPorPelicula(List<Contenido> listaContenido)
 {
     List<Contenido> contenidoFiltrado = new List<Contenido>();
-    foreach(var contenido in listaContenido)
+    foreach (var contenido in listaContenido)
     {
-        if(contenido is Pelicula)
+        if (contenido is Pelicula)
         {
             contenidoFiltrado.Add(contenido);
         }
     }
 
-    if(contenidoFiltrado.Count() == 0)
+    if (contenidoFiltrado.Count() == 0)
     {
         Console.WriteLine($"No hay peliculas registradas en la lista.");
     }
     else
     {
         Console.WriteLine("=== LISTADO DE PELÍCULAS ===");
-        foreach(var contenido in contenidoFiltrado)
-        {   
+        foreach (var contenido in contenidoFiltrado)
+        {
             contenido.ObtenerDescripcion();
         }
     }
@@ -112,14 +131,14 @@ void EstadisticaContenidos(List<Contenido> listaContenido)
     int totalPeliculas = 0;
     int totalSeries = 0;
     int totalDocumentales = 0;
-    
-    foreach(var contenido in listaContenido)
+
+    foreach (var contenido in listaContenido)
     {
-        if(contenido is Pelicula) totalPeliculas++;
+        if (contenido is Pelicula) totalPeliculas++;
 
-        if(contenido is Serie) totalSeries++;
+        if (contenido is Serie) totalSeries++;
 
-        if(contenido is Documental) totalDocumentales++;
+        if (contenido is Documental) totalDocumentales++;
     }
 
     Console.WriteLine("=== ESTADISTICAS ===");
